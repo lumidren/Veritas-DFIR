@@ -36,6 +36,8 @@ RUN apt-get update \
  && apt-get purge -y --auto-remove curl gnupg \
  && rm -rf /var/lib/apt/lists/* \
  && /usr/local/bin/python3 -m pip uninstall -y setuptools wheel \
+ && echo "setuptools copies outside /opt/venv (removed):" \
+ && find /usr/local/lib /usr/lib -xdev -iname 'setuptools*' -print -prune -exec rm -rf {} + \
  && groupadd --gid 10001 veritas \
  && useradd --uid 10001 --gid 10001 --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin veritas \
  && install -d -o 10001 -g 10001 -m 0750 /var/lib/veritas
