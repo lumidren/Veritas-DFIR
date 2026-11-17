@@ -26,8 +26,10 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+      # Pinned so a new Rust release cannot add lints and turn CI red; bump deliberately with clippy clean.
+      - uses: dtolnay/rust-toolchain@master
         with:
+          toolchain: "1.99.1"
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
       - uses: actions/cache@v4
@@ -53,8 +55,10 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+      # Pinned so a new Rust release cannot add lints and turn CI red; bump deliberately with clippy clean.
+      - uses: dtolnay/rust-toolchain@master
         with:
+          toolchain: "1.99.1"
           components: llvm-tools-preview
       - uses: Swatinem/rust-cache@v2
       - uses: actions/cache@v4
@@ -89,7 +93,10 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+      # Pinned so a new Rust release cannot add lints and turn CI red; bump deliberately with clippy clean.
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.99.1"
       - uses: Swatinem/rust-cache@v2
       - name: Build Rust binaries used by cross-language tests
         run: cargo build --release --locked --bins
@@ -142,7 +149,10 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+      # Pinned so a new Rust release cannot add lints and turn CI red; bump deliberately with clippy clean.
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.99.1"
       - uses: Swatinem/rust-cache@v2
       - run: cargo build --release --locked --bins
       - uses: actions/setup-python@v5
@@ -185,7 +195,10 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+      # Pinned so a new Rust release cannot add lints and turn CI red; bump deliberately with clippy clean.
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.99.1"
       - uses: Swatinem/rust-cache@v2
       - run: cargo build --release --locked --bins
       - uses: actions/setup-python@v5
